@@ -117,7 +117,7 @@ func SendMsg(c *gin.Context) {
 		fallthrough
 	case "audio":
 		{
-			if msgFile.Size == 0 {
+			if msgFile.Size == 0 || msgFile == nil {
 				com.Error(c, "类型为文件时，msgFile不能为空")
 				return
 			}
