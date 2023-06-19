@@ -18,6 +18,15 @@ func StartApi() {
 	s.Use(cors())
 	//s.Use(printRequest)
 
+	// preflight request if method is OPTIONS
+	s.Use(func(c *gin.Context) {
+		if c.Request.Method == "OPTIONS" {
+			c.AbortWithStatus(204)
+			return
+		}
+		c.Next()
+	})
+
 	// pad PTerm Services
 	{
 		// Human's terminal url group
