@@ -2,8 +2,10 @@ package server
 
 import (
 	com "ConfBackend/common"
+	S "ConfBackend/services"
 	"ConfBackend/task"
 	"github.com/gin-gonic/gin"
+	"github.com/sirupsen/logrus"
 	"net/http/httputil"
 )
 
@@ -33,12 +35,14 @@ func MustHasUserUUID() gin.HandlerFunc {
 		uuid := c.GetHeader("X-User-UUID")
 		if uuid == "" {
 			com.Error(c, "HTTP请求头中缺少X-User-UUID")
+			S.S.Logger.WithFields(logrus.Fields{}).Infof("HTTP请求头中缺少X-User-UUID")
 			c.Abort()
 			return
 		}
 
 		if !task.HaveValidUser(uuid) {
 			com.Error(c, "找不到X-User-UUID对应的用户："+uuid)
+			S.S.Logger.WithFields(logrus.Fields{}).Infof("找不到X-User-UUID对应的用户：" + uuid)
 			c.Abort()
 			return
 		}

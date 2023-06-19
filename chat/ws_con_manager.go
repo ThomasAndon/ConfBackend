@@ -41,6 +41,7 @@ func (c *ConnectionManager) WebSocketHandler(ctx *gin.Context) {
 	}
 
 	uuidobj, found := ctx.Get("uuid")
+
 	uuid := ""
 	if !found {
 		log.Println("No UUID provided.")
