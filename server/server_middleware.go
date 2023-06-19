@@ -32,13 +32,22 @@ func cors() gin.HandlerFunc {
 
 func MustHasUserUUID() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		uuid := c.GetHeader("X-User-UUID")
+
+		// 先尝试url获取
+		// URL query useruuid
+		uuid := c.Query("useruuid")
+		if uuid != "" {
+			goto checkExist
+		}
+
+		uuid = c.GetHeader("X-User-UUID")
 		if uuid == "" {
-			com.Error(c, "HTTP请求头中缺少X-User-UUID")
-			S.S.Logger.WithFields(logrus.Fields{}).Infof("HTTP请求头中缺少X-User-UUID")
+			com.Error(c, "HTTP请求头和url中至少一处需要X-User-UUID")
+			S.S.Logger.WithFields(logrus.Fields{}).Infof("HTTP请求头和url中至少一处需要X-User-UUID")
 			c.Abort()
 			return
 		}
+	checkExist:
 
 		if !task.HaveValidUser(uuid) {
 			com.Error(c, "找不到X-User-UUID对应的用户："+uuid)
