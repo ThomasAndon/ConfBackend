@@ -15,7 +15,7 @@ func StartApi() {
 	s := gin.Default()
 	// set log writer
 
-	//s.Use(cors())
+	s.Use(cors())
 	//s.Use(printRequest)
 
 	// pad PTerm Services
