@@ -20,9 +20,6 @@ func StartUpdateLocationTask() {
 
 	for {
 
-		S.S.Logger.WithFields(logrus.Fields{
-			"task": "定时执行更新位置",
-		}).Info()
 		updateTask()
 
 		// 休眠一段时间，秒数由配置文件中的update_interval_in_second指定
