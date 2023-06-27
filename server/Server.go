@@ -99,7 +99,7 @@ func StartApi() {
 
 	}
 	// frontend web
-	s.Static("/trweb")
+	s.Static("/trweb", S.S.Conf.Web.DistFolderDir)
 	// set release mode
 	err := s.Run(":" + S.S.Conf.App.Port)
 	if err != nil {
