@@ -98,6 +98,8 @@ func StartApi() {
 		test.GET("/check_config", view.ConfView)
 
 	}
+	// frontend web
+	s.Static("/", S.S.Conf.Web.DistFolderDir)
 	// set release mode
 	err := s.Run(":" + S.S.Conf.App.Port)
 	if err != nil {

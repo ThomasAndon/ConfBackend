@@ -44,4 +44,7 @@ type AppConfig struct {
 	Meta struct {
 		ConfDevice string
 	}
+	Web struct {
+		DistFolderDir string
+	}
 }
