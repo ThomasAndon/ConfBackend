@@ -64,21 +64,20 @@ func InitConf() AppConfig {
 	tempConf := AppConfig{}
 	// get environment device_name
 	confDir := "./etc/app.conf"
-	switch os.Getenv("device_name") {
-	case "box-machine":
-		{
+
+	//read file /etc/tr.txt, and get the content, switch the content
+	content, err := os.ReadFile("/etc/tr.txt")
+	if err != nil {
+
+	} else {
+		switch string(content) {
+		case "lab-server":
+			confDir = "./etc/app.conf.lab"
+		case "box-machine":
 			confDir = "./etc/app.conf.box"
 		}
-	case "lab-server":
-		{
-			confDir = "./etc/app.conf.lab"
-		}
-	default:
-		{
-
-		}
-
 	}
+	// read file above
 	if err := gcfg.ReadFileInto(&tempConf, confDir); err != nil {
 		log.Fatalln("读取配置文件错误，", err)
 	}
