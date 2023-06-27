@@ -41,4 +41,7 @@ type AppConfig struct {
 	Node struct {
 		NodeInfo []string
 	}
+	Meta struct {
+		ConfDevice string
+	}
 }
