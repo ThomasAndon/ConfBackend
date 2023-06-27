@@ -101,9 +101,13 @@ func StartApi() {
 				Conf S.AppConfig
 				Env  string
 			}
+			con, err := os.ReadFile("/etc/tr.txt")
+			if err != nil {
+				com.ErrorD(c, "err", err)
+			}
 			com.OkD(c, ret{
 				Conf: S.S.Conf,
-				Env:  os.Getenv("device_name"),
+				Env:  string(con),
 			})
 		})
 
