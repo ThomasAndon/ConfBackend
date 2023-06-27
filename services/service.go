@@ -79,7 +79,7 @@ func InitConf() AppConfig {
 		}
 
 	}
-	if err := gcfg.ReadFileInto(&tempConf, "./etc/app.conf"); err != nil {
+	if err := gcfg.ReadFileInto(&tempConf, confDir); err != nil {
 		log.Fatalln("读取配置文件错误，", err)
 	}
 
