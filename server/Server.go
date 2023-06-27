@@ -9,6 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"io"
 	"log"
+	"os"
 )
 
 func StartApi() {
@@ -96,7 +97,14 @@ func StartApi() {
 		})
 		test.POST("/add_node_coord", view.TestAddNode)
 		test.GET("/check_config", func(c *gin.Context) {
-			com.OkD(c, S.S.Conf)
+			type ret struct {
+				Conf S.AppConfig
+				env  string
+			}
+			com.OkD(c, ret{
+				Conf: S.S.Conf,
+				env:  os.Getenv("device_name"),
+			})
 		})
 
 	}
