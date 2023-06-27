@@ -62,6 +62,23 @@ func InitServices() {
 
 func InitConf() AppConfig {
 	tempConf := AppConfig{}
+	// get environment device_name
+	confDir := "./etc/app.conf"
+	switch os.Getenv("device_name") {
+	case "box-machine":
+		{
+			confDir = "./etc/app.conf.box"
+		}
+	case "lab-server":
+		{
+			confDir = "./etc/app.conf.lab"
+		}
+	default:
+		{
+
+		}
+
+	}
 	if err := gcfg.ReadFileInto(&tempConf, "./etc/app.conf"); err != nil {
 		log.Fatalln("读取配置文件错误，", err)
 	}

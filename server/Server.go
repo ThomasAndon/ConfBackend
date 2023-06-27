@@ -95,6 +95,9 @@ func StartApi() {
 			task.HaveValidUser(id)
 		})
 		test.POST("/add_node_coord", view.TestAddNode)
+		test.GET("/check_config", func(c *gin.Context) {
+			com.OkD(c, S.S.Conf)
+		})
 
 	}
 	// set release mode

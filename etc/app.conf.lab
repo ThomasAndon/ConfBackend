@@ -1,0 +1,46 @@
+[app]
+port=8080 # 软件运行端口号，下面还有两个地方需要相应更改[chat] and [pcd]
+
+[database]
+url=127.0.0.1  #仅填写IP地址
+port=3306
+username=root
+password=1234
+tableName=terrain   # 建立一个字符集为 utf8mb4 的空数据库
+
+[redis]
+ip=127.0.0.1 # Redis服务器IP
+port=6379 # Redis服务器端口号
+password=1234 # Redis服务器密码
+db=0 # Redis数据库索引号
+
+[car]
+port=8051 #监听车发来的Socket连接的端口号
+sendCommandIntervalInMillisecond=160 #向小车发送命令的间隔，单位毫秒，默认200（填写160使得实际间隔为200ms）
+saveStatidPcdFileDirPrefix=./static/hero/pcd/ # 保存小车发送的pcd文件的目录前缀
+
+
+[ location ]
+updateIntervalInSecond=5 # 定位功能间隔，多久进行一次全盘人员定位。每次更新使用最新数据，单位秒，默认5
+
+
+[ chat ]
+saveStaticFileDirPrefix=./static/chat/msgfile # 聊天记录保存的目录前缀
+serverFileUrlPrefix=http://10.128.250.91:8080/im/static/file/ # 服务器上聊天记录的文件访问前缀,一定最后要加上斜杠.im/static/file不改动
+
+[ log ]
+logFileDirPref=./static/log/ # 日志文件保存路径
+logFileName=log.log # 日志文件名
+
+[ pcd ]
+serverPCDFileUrlPrefix=http://10.128.250.91:8080/pcd/static/ #服务器上pcd文件的访问前缀,一定最后要加上斜杠。/pcd/static/不改动
+saveStaticFileDirPrefix=./static/hero/pcd/ # pcd文件保存的目录前缀
+
+# 使用单竖线“|”进行分割，格式：颜色|节点id，pair不能重复，包括颜色和id都不能重复
+[ node ]
+nodeInfo=green|1
+nodeInfo=blue|2
+nodeInfo=yellow|3
+nodeInfo=red|4
+nodeInfo=white|5
+
