@@ -172,3 +172,7 @@ func LatestPcdLink2D(c *gin.Context) {
 	S.S.Logger.Infof("返回最新的PCD文件链接: %s", fullLink)
 	com.OkD(c, fullLink)
 }
+
+func MemLocation(c *gin.Context) {
+
+}

@@ -33,7 +33,7 @@ logFileDirPref=./static/log/ # 日志文件保存路径
 logFileName=log.log # 日志文件名
 
 [ pcd ]
-serverPCDFileUrlPrefix=http://localhost:8080/pcd/static/ #服务器上pcd文件的访问前缀,一定最后要加上斜杠。/pcd/static/不改动
+serverPCDFileUrlPrefix=http://192.168.0.107:8080/pcd/static/ #服务器上pcd文件的访问前缀,一定最后要加上斜杠。/pcd/static/不改动
 saveStaticFileDirPrefix=./static/hero/pcd/ # pcd文件保存的目录前缀
 
 # 使用单竖线“|”进行分割，格式：颜色|节点id，pair不能重复，包括颜色和id都不能重复

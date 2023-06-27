@@ -12,9 +12,14 @@ import (
 )
 
 func StartApi() {
-	s := gin.Default()
+	//ss := gin.Default()
 	// set log writer
 
+	s := gin.New()
+	logger := gin.LoggerWithConfig(gin.LoggerConfig{
+		SkipPaths: []string{"/trweb/"},
+	})
+	s.Use(logger, gin.Recovery())
 	s.Use(cors())
 	//s.Use(printRequest)
 
@@ -67,6 +72,7 @@ func StartApi() {
 		cc.POST("/login", view.CCLogin)
 		cc.GET("/latest_pcd_link", view.LatestPcdLink)
 		cc.GET("/latest_pcd_link_2d", view.LatestPcdLink2D)
+		cc.GET("/mem_location", view.MemLocation)
 	}
 
 	{
@@ -99,7 +105,7 @@ func StartApi() {
 
 	}
 	// frontend web
-	s.Static("/trweb", S.S.Conf.Web.DistFolderDir)
+	s.Static("/trweb/", S.S.Conf.Web.DistFolderDir)
 	// set release mode
 	err := s.Run(":" + S.S.Conf.App.Port)
 	if err != nil {
