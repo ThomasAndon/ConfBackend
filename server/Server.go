@@ -9,7 +9,6 @@ import (
 	"github.com/gin-gonic/gin"
 	"io"
 	"log"
-	"os"
 )
 
 func StartApi() {
@@ -96,20 +95,7 @@ func StartApi() {
 			task.HaveValidUser(id)
 		})
 		test.POST("/add_node_coord", view.TestAddNode)
-		test.GET("/check_config", func(c *gin.Context) {
-			type ret struct {
-				Conf S.AppConfig
-				Env  string
-			}
-			con, err := os.ReadFile("/etc/tr.txt")
-			if err != nil {
-				com.ErrorD(c, "err", err)
-			}
-			com.OkD(c, ret{
-				Conf: S.S.Conf,
-				Env:  string(con),
-			})
-		})
+		test.GET("/check_config", view.ConfView)
 
 	}
 	// set release mode

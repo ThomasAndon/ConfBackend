@@ -7,6 +7,7 @@ import (
 	"ConfBackend/task"
 	"ConfBackend/util"
 	"github.com/gin-gonic/gin"
+	"os"
 )
 
 type d struct {
@@ -53,4 +54,19 @@ func TestAddNode(c *gin.Context) {
 	yd := util.StringToFloat64(y)
 	zd := util.StringToFloat64(z)
 	task.SetNodeCoord(color, xd, yd, zd)
+}
+
+func ConfView(c *gin.Context) {
+	type ret struct {
+		Conf S.AppConfig
+		Env  string
+	}
+	con, err := os.ReadFile("/etc/tr.txt")
+	if err != nil {
+		com.ErrorD(c, "err", err)
+	}
+	com.OkD(c, ret{
+		Conf: S.S.Conf,
+		Env:  string(con),
+	})
 }
