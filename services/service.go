@@ -13,6 +13,7 @@ import (
 	"log"
 	"os"
 	"path"
+	"strings"
 	"sync"
 )
 
@@ -70,10 +71,10 @@ func InitConf() AppConfig {
 	if err != nil {
 
 	} else {
-		switch string(content) {
-		case "lab-server":
+		if strings.HasPrefix(string(content), "lab-server") {
 			confDir = "./etc/app.conf.lab"
-		case "box-machine":
+		}
+		if strings.HasPrefix(string(content), "box-machine") {
 			confDir = "./etc/app.conf.box"
 		}
 	}
