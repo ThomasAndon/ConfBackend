@@ -99,11 +99,11 @@ func StartApi() {
 		test.GET("/check_config", func(c *gin.Context) {
 			type ret struct {
 				Conf S.AppConfig
-				env  string
+				Env  string
 			}
 			com.OkD(c, ret{
 				Conf: S.S.Conf,
-				env:  os.Getenv("device_name"),
+				Env:  os.Getenv("device_name"),
 			})
 		})
 
