@@ -60,6 +60,7 @@ func setToRedis(nodeId, packetId string, info locInfoType) {
 
 	p := r.Pipeline()
 	p.HSet(S.S.Context, util.GenDistanceCacheKey(packetId, nodeId), slice)
+	p.Expire(S.S.Context, util.GenDistanceCacheKey(packetId, nodeId), time.Duration(S.S.Conf.Location.PktCacheTimeInMinute)*time.Minute)
 
 	//r.HSet(c, util.GenDistanceCacheKey(packetId, nodeId), slice)
 	// get current timestamp

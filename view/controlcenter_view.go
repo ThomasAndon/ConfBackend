@@ -2,10 +2,12 @@ package view
 
 import (
 	com "ConfBackend/common"
+	"ConfBackend/dto"
 	"ConfBackend/hero"
 	"ConfBackend/model"
 	S "ConfBackend/services"
 	"ConfBackend/util"
+	"encoding/json"
 	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
 	"github.com/sirupsen/logrus"
@@ -174,5 +176,14 @@ func LatestPcdLink2D(c *gin.Context) {
 }
 
 func MemLocation(c *gin.Context) {
+	r := S.S.Redis
+	b := make([]dto.PTermCalcedCoordDTO, 0)
+	r.HGetAll(S.S.Context, util.GenCalcedPTermCoordKey()).Val()
+	for _, v := range r.HGetAll(S.S.Context, util.GenCalcedPTermCoordKey()).Val() {
+		temp := dto.PTermCalcedCoordDTO{}
+		json.Unmarshal([]byte(v), &temp)
+		b = append(b, temp)
+	}
+	com.OkD(c, b)
 
 }

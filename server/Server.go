@@ -9,6 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"io"
 	"log"
+	"strings"
 )
 
 func StartApi() {
@@ -16,9 +17,16 @@ func StartApi() {
 	// set log writer
 
 	s := gin.New()
-	logger := gin.LoggerWithConfig(gin.LoggerConfig{
-		SkipPaths: []string{"/trweb/"},
-	})
+	// a conditional logger
+	logger := func() gin.HandlerFunc {
+		return func(c *gin.Context) {
+			if strings.HasPrefix(c.Request.URL.Path, "/trweb") {
+				return
+			} else {
+				gin.Logger()(c)
+			}
+		}
+	}()
 	s.Use(logger, gin.Recovery())
 	s.Use(cors())
 	//s.Use(printRequest)
