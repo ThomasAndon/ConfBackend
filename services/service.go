@@ -125,7 +125,7 @@ func initLogger() (*logrus.Logger, io.Writer) {
 	lumberjackLogger := &lumberjack.Logger{
 		Filename:   path.Join(S.Conf.Log.LogFileDirPref, S.Conf.Log.LogFileName), // 日志文件路径
 		MaxSize:    1,                                                            // 每个日志文件保存的最大尺寸 单位：M
-		MaxBackups: 1,                                                            // 日志文件最多保存多少个备份
+		MaxBackups: 2,                                                            // 日志文件最多保存多少个备份
 		MaxAge:     7,                                                            // 文件最多保存多少天
 		Compress:   false,                                                        // 是否压缩
 
