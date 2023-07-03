@@ -5,8 +5,8 @@ type SensorUpdateReqModel struct {
 	// PacketId 参数没有用处。
 	PacketId   int `json:"range"`
 	SensorInfo struct {
-		Light1 int `json:"light1"`
-		Light2 int `json:"light2"`
-		Voice1 int `json:"voice1"`
+		Light1 int `json:"l1"`
+		Light2 int `json:"l2"`
+		Voice1 int `json:"voice"`
 	} `json:"sensor"`
 }

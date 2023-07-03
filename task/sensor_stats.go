@@ -13,9 +13,9 @@ func SetSensorStatsToRedis(nodeId string, light1, light2, voice int) {
 	b := dto.SensorStatsDTO{
 		NodeId:     nodeId,
 		UpdateTime: carbon.DateTime{carbon.Now()},
-		Light1:     0,
-		Light2:     0,
-		Voice1:     0,
+		Light1:     light1,
+		Light2:     light2,
+		Voice1:     voice,
 	}
 	bstr, _ := json.Marshal(b)
 	r.HSet(S.S.Context, util.GenNodeStatsKey(), nodeId, bstr)

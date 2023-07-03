@@ -81,6 +81,7 @@ func StartApi() {
 		cc.GET("/latest_pcd_link", view.LatestPcdLink)
 		cc.GET("/latest_pcd_link_2d", view.LatestPcdLink2D)
 		cc.GET("/mem_location", view.MemLocation)
+		cc.GET("/node_stats", view.NodeSensorStats)
 	}
 
 	{

@@ -187,3 +187,16 @@ func MemLocation(c *gin.Context) {
 	com.OkD(c, b)
 
 }
+
+func NodeSensorStats(ctx *gin.Context) {
+	b := make([]dto.SensorStatsDTO, 0)
+	r := S.S.Redis
+
+	for _, v := range r.HGetAll(S.S.Context, util.GenNodeStatsKey()).Val() {
+		temp := dto.SensorStatsDTO{}
+		json.Unmarshal([]byte(v), &temp)
+		b = append(b, temp)
+	}
+
+	com.OkD(ctx, b)
+}
