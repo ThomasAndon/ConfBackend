@@ -29,6 +29,9 @@ func UpdateLocation(c *gin.Context) {
 	b := locationUpdateDTO{}
 	err := json.NewDecoder(c.Request.Body).Decode(&b)
 	if err != nil {
+		S.S.Logger.WithFields(logrus.Fields{
+			"error": err,
+		}).Errorf("parse request body failed")
 		return
 	}
 
