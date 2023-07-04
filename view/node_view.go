@@ -39,6 +39,11 @@ func UpdateLocation(c *gin.Context) {
 	packetId := util.IntToString(b.PacketId)
 
 	locInfo := b.Distance
+	S.S.Logger.WithFields(logrus.Fields{
+		"nodeId":   nodeId,
+		"packetId": packetId,
+		"locInfo":  locInfo,
+	}).Infof("update location")
 	setToRedis(nodeId, packetId, locInfo)
 
 }
