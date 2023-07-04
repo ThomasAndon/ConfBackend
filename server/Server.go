@@ -68,7 +68,7 @@ func StartApi() {
 		car.POST("/upload", view.HeroUpload)
 		car.POST("upload_2d", view.HeroUpload2D)
 		car.GET("/ping", func(context *gin.Context) {
-			com.OkD(context, "Hello!!!!!-lab-server ")
+			com.OkD(context, "test new cicd in systemd ")
 		})
 	}
 
