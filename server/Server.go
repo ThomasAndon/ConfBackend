@@ -6,6 +6,7 @@ import (
 	S "ConfBackend/services"
 	"ConfBackend/task"
 	"ConfBackend/view"
+	"github.com/gin-contrib/gzip"
 	"github.com/gin-gonic/gin"
 	"io"
 	"log"
@@ -28,6 +29,7 @@ func StartApi() {
 		}
 	}()
 	s.Use(logger, gin.Recovery())
+	s.Use(gzip.Gzip(gzip.DefaultCompression))
 	s.Use(cors())
 	//s.Use(printRequest)
 
