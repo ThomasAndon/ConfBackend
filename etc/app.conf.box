@@ -39,11 +39,15 @@ saveStaticFileDirPrefix=./static/hero/pcd/ # pcd文件保存的目录前缀
 
 # 使用单竖线“|”进行分割，格式：颜色|节点id，pair不能重复，包括颜色和id都不能重复
 [ node ]
-nodeInfo=green|1
-nodeInfo=blue|2
-nodeInfo=yellow|3
-nodeInfo=red|4
-nodeInfo=white|5
+nodeInfo=node1|1
+nodeInfo=node2|2
+nodeInfo=node3|3
+nodeInfo=node4|4
+nodeInfo=node5|5
+nodeInfo=node6|6
+nodeInfo=node7|7
+nodeInfo=node8|8
+nodeInfo=node9|9
 
 [web]
 distFolderDir=/home/terrain/tr_web/dist # 前端打包后的文件夹路径
