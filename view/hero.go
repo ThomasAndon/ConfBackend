@@ -1,10 +1,12 @@
 package view
 
 import (
+	"ConfBackend/dto"
 	"ConfBackend/model"
 	S "ConfBackend/services"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
+	"github.com/sirupsen/logrus"
 	"path/filepath"
 	"time"
 )
@@ -90,5 +92,18 @@ func HeroUpload2D(c *gin.Context) {
 	}()
 
 	c.String(200, "文件保存成功")
+
+}
+
+func SingleNodeCoord(c *gin.Context) {
+	b := dto.HeroUploadNodeCoordVO{}
+
+	// parse body to b
+	err := c.ShouldBindJSON(&b)
+	if err != nil {
+		S.S.Logger.WithFields(logrus.Fields{
+			"err": err,
+		}).Errorf("json解析错误")
+	}
 
 }

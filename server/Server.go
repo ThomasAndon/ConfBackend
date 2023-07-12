@@ -69,6 +69,7 @@ func StartApi() {
 		car := s.Group("/hero")
 		car.POST("/upload", view.HeroUpload)
 		car.POST("upload_2d", view.HeroUpload2D)
+		car.POST("/single_node_coord", view.SingleNodeCoord)
 		car.GET("/ping", func(context *gin.Context) {
 			com.OkD(context, "test new cicd in systemd ")
 		})
@@ -114,7 +115,7 @@ func StartApi() {
 		test.POST("/add_node_coord", view.TestAddNode)
 		test.GET("/check_config", view.ConfView)
 		test.GET("/version", func(c *gin.Context) {
-			c.String(200, "0704:1755")
+			c.String(200, "0712:1210")
 		})
 
 	}

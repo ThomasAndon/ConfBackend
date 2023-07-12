@@ -90,7 +90,7 @@ func setToRedis(nodeId, packetId string, info locInfoType) {
 }
 
 func SensorStats(c *gin.Context) {
-	b := dto.SensorUpdateReqModel{}
+	b := dto.SensorUpdateVO{}
 	err := json.NewDecoder(c.Request.Body).Decode(&b)
 	if err != nil {
 		return
