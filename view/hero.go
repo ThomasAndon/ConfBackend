@@ -4,6 +4,7 @@ import (
 	"ConfBackend/dto"
 	"ConfBackend/model"
 	S "ConfBackend/services"
+	"ConfBackend/task"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"github.com/sirupsen/logrus"
@@ -96,14 +97,18 @@ func HeroUpload2D(c *gin.Context) {
 }
 
 func SingleNodeCoord(c *gin.Context) {
-	b := dto.HeroUploadNodeCoordVO{}
+	b := dto.HeroUploadNodeCoordVO{
+		OverwriteNodeId: -1,
+	}
 
 	// parse body to b
 	err := c.ShouldBindJSON(&b)
 	if err != nil {
 		S.S.Logger.WithFields(logrus.Fields{
 			"err": err,
-		}).Errorf("json解析错误")
+		}).Errorf("json解析错误，检查请求中的json格式")
 	}
+
+	task.SetNodeCoordV2(b.X, b.Y, b.Z, b.VisualDistInMeter, b.DistSinceLastInMeter, b.OverwriteNodeId)
 
 }

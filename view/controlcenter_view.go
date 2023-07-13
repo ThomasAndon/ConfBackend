@@ -6,6 +6,7 @@ import (
 	"ConfBackend/hero"
 	"ConfBackend/model"
 	S "ConfBackend/services"
+	"ConfBackend/task"
 	"ConfBackend/util"
 	"encoding/json"
 	"github.com/gin-gonic/gin"
@@ -199,4 +200,13 @@ func NodeSensorStats(ctx *gin.Context) {
 	}
 
 	com.OkD(ctx, b)
+}
+
+func NodeCoords(ctx *gin.Context) {
+	res := task.GetNodeCoord()
+	ret := make([]dto.NodeCoordDTO, 0)
+	for _, v := range res {
+		ret = append(ret, v)
+	}
+	com.OkD(ctx, ret)
 }

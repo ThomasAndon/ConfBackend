@@ -17,4 +17,5 @@ type HeroUploadNodeCoordVO struct {
 	Z                    float64 `json:"z"`
 	VisualDistInMeter    float64 `json:"visualDistInMeter"`
 	DistSinceLastInMeter float64 `json:"distSinceLastInMeter"`
+	OverwriteNodeId      int     `json:"overwriteNodeId"`
 }

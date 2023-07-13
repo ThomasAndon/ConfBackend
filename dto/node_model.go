@@ -11,10 +11,11 @@ type PTermDistanceDTO struct {
 }
 
 type NodeCoordDTO struct {
-	NodeId string
-	X      float64
-	Y      float64
-	Z      float64
+	NodeId     string          `json:"nodeId"`
+	X          float64         `json:"x"`
+	Y          float64         `json:"y"`
+	Z          float64         `json:"z"`
+	UpdateTime carbon.DateTime `json:"updateTime"`
 }
 
 type SensorStatsDTO struct {

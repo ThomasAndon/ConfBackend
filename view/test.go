@@ -53,7 +53,7 @@ func TestAddNode(c *gin.Context) {
 	xd := util.StringToFloat64(x)
 	yd := util.StringToFloat64(y)
 	zd := util.StringToFloat64(z)
-	task.SetNodeCoord(color, xd, yd, zd)
+	task.SetNodeCoordV1(color, xd, yd, zd)
 }
 
 func ConfView(c *gin.Context) {
