@@ -80,7 +80,10 @@ func InitConf() AppConfig {
 	}
 	// read file above
 	if err := gcfg.ReadFileInto(&tempConf, confDir); err != nil {
-		log.Fatalln("读取配置文件错误，", err)
+
+		fmt.Println("读取配置文件错误，", err)
+		os.Exit(2)
+		//log.Fatalln("读取配置文件错误，", err)
 	}
 
 	return tempConf
@@ -95,6 +98,8 @@ func initRedis() redis.Client {
 	})
 	pong, err := tempRedis.Ping(context.Background()).Result()
 	if err != nil {
+		fmt.Println("初始化redis失败", err)
+		os.Exit(3)
 		log.Fatalln("初始化redis失败", err)
 	} else {
 		log.Println("redis连接成功", pong)
@@ -108,6 +113,8 @@ func initMysql() *gorm.DB {
 		//Logger: logger.Default.LogMode(logger.Info), // 日志配置
 	})
 	if err != nil {
+		fmt.Println("初始化数据库连接失败", err)
+		os.Exit(4)
 		log.Fatalln("初始化数据库连接失败", err)
 	}
 	return db
