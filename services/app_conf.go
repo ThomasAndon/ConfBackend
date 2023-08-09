@@ -36,8 +36,8 @@ type AppConfig struct {
 		LogFileName    string
 	}
 	Pcd struct {
-		ServerPCDFileUrlPrefix  string
-		SaveStaticFileDirPrefix string
+		ServerPCDFileUrlPrefix string
+		//SaveStaticFileDirPrefix string
 	}
 	Node struct {
 		NodeInfo []string

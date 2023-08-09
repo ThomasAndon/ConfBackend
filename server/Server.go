@@ -104,7 +104,7 @@ func StartApi() {
 	}
 
 	//join dir of current and static
-	s.Static("pcd/static/", S.S.Conf.Pcd.SaveStaticFileDirPrefix)
+	s.Static("pcd/static/", S.S.Conf.Car.SaveStatidPcdFileDirPrefix)
 
 	{
 		test := s.Group("/test")
