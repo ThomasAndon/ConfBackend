@@ -22,7 +22,7 @@ saveStatidPcdFileDirPrefix=/home/tando/tr_static/hero/pcd/ # 保存小车发送�
 
 [ location ]
 updateIntervalInSecond=5 # 定位功能间隔，多久进行一次全盘人员定位。每次更新使用最新数据，单位秒，默认5
-pktCacheTimeInMinute=1 # 距离包缓存的时间，单位分钟，默认10
+pktCacheTimeInMinute=1 # 距离包缓存的时间，单位分钟，默认1
 
 
 [ chat ]
