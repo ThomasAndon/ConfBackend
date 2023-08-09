@@ -6,10 +6,12 @@ import (
 	S "ConfBackend/services"
 	"ConfBackend/task"
 	"ConfBackend/view"
+	"fmt"
 	"github.com/gin-contrib/gzip"
 	"github.com/gin-gonic/gin"
 	"io"
 	"log"
+	"os"
 	"strings"
 )
 
@@ -125,6 +127,8 @@ func StartApi() {
 	// set release mode
 	err := s.Run(":" + S.S.Conf.App.Port)
 	if err != nil {
+		fmt.Println("error running api server")
+		os.Exit(6)
 		log.Fatalln(err)
 	}
 
