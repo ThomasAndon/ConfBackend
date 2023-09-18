@@ -215,3 +215,32 @@ var SensorStatColumns = struct {
 	Time:      "time",
 	DeletedAt: "deleted_at",
 }
+
+// VibrationInfo [...]
+type VibrationInfo struct {
+	ID              uint64    `gorm:"primaryKey;column:id" json:"-"`
+	DetectedTime    time.Time `gorm:"column:detected_time" json:"detectedTime"`
+	CreatedAt       time.Time `gorm:"column:created_at" json:"createdAt"`
+	Value           float64   `gorm:"column:value" json:"value"`
+	LocationInMeter float64   `gorm:"column:location_in_meter" json:"locationInMeter"`
+}
+
+// TableName get sql table name.获取数据库表名
+func (m *VibrationInfo) TableName() string {
+	return "t_vibration_info"
+}
+
+// VibrationInfoColumns get sql column name.获取数据库列名
+var VibrationInfoColumns = struct {
+	ID              string
+	DetectedTime    string
+	CreatedAt       string
+	Value           string
+	LocationInMeter string
+}{
+	ID:              "id",
+	DetectedTime:    "detected_time",
+	CreatedAt:       "created_at",
+	Value:           "value",
+	LocationInMeter: "location_in_meter",
+}

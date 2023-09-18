@@ -122,6 +122,12 @@ func StartApi() {
 		})
 
 	}
+
+	// vibration part 震动检测部分
+	{
+		vib := s.Group("/vib")
+		vib.POST("/upload", view.VibUpload)
+	}
 	// frontend web
 	s.Static("/trweb/", S.S.Conf.Web.DistFolderDir)
 	// set release mode

@@ -19,3 +19,8 @@ type HeroUploadNodeCoordVO struct {
 	DistSinceLastInMeter float64 `json:"distSinceLastInMeter"`
 	OverwriteNodeId      int     `json:"overwriteNodeId"`
 }
+
+type VibrationUploadVO struct {
+	RecordTime string `json:"time"`
+	PointsData string `json:"point"`
+}
