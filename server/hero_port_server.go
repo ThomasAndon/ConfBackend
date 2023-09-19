@@ -4,6 +4,7 @@ import (
 	"ConfBackend/hero"
 	S "ConfBackend/services"
 	"fmt"
+	"github.com/sirupsen/logrus"
 	"log"
 	"net"
 	"os"
@@ -26,7 +27,9 @@ func StartListenHeroPort() {
 	for {
 		conn, err := listener.Accept()
 		if err != nil {
-			log.Fatalln("accept err", err)
+			S.S.Logger.WithFields(logrus.Fields{
+				"err": err,
+			}).Errorf("接受车辆连接错误，端口：%s", heroPort)
 		}
 		go hero.HandleConnection(conn)
 	}

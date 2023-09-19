@@ -69,9 +69,9 @@ func updateTask() {
 				continue
 			} else {
 
-				// 如果算过，则也不用再算
+				// 如果此包的时间等于最新的时间，说明已经计算过了，此包和以前的都不用算了，直接退出
 				if pkgTime == util.StringToFloat64(lastUpdateTimestamp) {
-					continue
+					return
 				}
 
 				// 有足够的数据，计算位置
@@ -90,7 +90,7 @@ func updateTask() {
 		}
 
 		if hasFoundValid {
-			break
+			return
 		} else {
 			offset += pkgRetrieveStride
 		}

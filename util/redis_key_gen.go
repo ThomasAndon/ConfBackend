@@ -11,6 +11,7 @@ func GenDistanceQueryKey(packetId string) string {
 }
 
 // GenPacketTimelogPrefix 生成节点位置的key,即 tr_:dc_:pkt_tm_
+// score float64 unixMilli
 func GenPacketTimelogPrefix() string {
 	return com.ProjectPref + ":" + com.DistanceCachePrefix + ":" + com.PacketTimelogPrefix
 }

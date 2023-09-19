@@ -124,12 +124,12 @@ func HandleConnection(conn net.Conn) {
 
 	defer func() {
 		conn.Close()
-		log.Println("Car disconnected")
+		S.S.Logger.Infof("Car disconnected")
 		Info.Connected = false
 	}()
 
 	Info.Connected = true
-	log.Println("Car connected")
+	S.S.Logger.Infof("Car connected")
 
 	// 记录一个最新发送命令的时间戳
 	var lastSendCommandTime time.Time
