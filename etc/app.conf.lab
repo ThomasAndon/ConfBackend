@@ -27,14 +27,14 @@ pktCacheTimeInMinute=1 # 距离包缓存的时间，单位分钟，默认1
 
 [ chat ]
 saveStaticFileDirPrefix=/home/tando/tr_static/chat/msgfile # 聊天记录保存的目录前缀
-serverFileUrlPrefix=http://10.128.250.91:8080/im/static/file/ # 服务器上聊天记录的文件访问前缀,一定最后要加上斜杠.im/static/file不改动
+serverFileUrlPrefix=http://10.129.46.101:8080/im/static/file/ # 服务器上聊天记录的文件访问前缀,一定最后要加上斜杠.im/static/file不改动
 
 [ log ]
 logFileDirPref=/home/tando/tr_static/log/ # 日志文件保存路径
 logFileName=log.log # 日志文件名
 
 [ pcd ]
-serverPCDFileUrlPrefix=http://10.128.250.91:8080/pcd/static/ #服务器上pcd文件的访问前缀,一定最后要加上斜杠。/pcd/static/不改动
+serverPCDFileUrlPrefix=http://10.129.46.101:8080/pcd/static/ #服务器上pcd文件的访问前缀,一定最后要加上斜杠。/pcd/static/不改动
 
 
 # 使用单竖线“|”进行分割，格式：颜色|节点id，pair不能重复，包括颜色和id都不能重复
