@@ -50,6 +50,10 @@ func GenCalcedPTermCoordKey() string {
 	return com.ProjectPref + ":" + com.DistanceCachePrefix + ":" + com.PtermCalcedCoordPrefix
 }
 
+func GenLinearCalcedPTermKey() string {
+	return com.ProjectPref + ":" + com.DistanceCachePrefix + ":" + com.LinearCalcedPTermPrefix
+}
+
 ///// node stats
 
 // GenNodeStatsKey 返回tr_:sensor_:node-sensor-stats_
