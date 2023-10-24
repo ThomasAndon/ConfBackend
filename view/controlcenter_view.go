@@ -210,3 +210,16 @@ func NodeCoords(ctx *gin.Context) {
 	}
 	com.OkD(ctx, ret)
 }
+
+func MemLocationLinear(c *gin.Context) {
+	r := S.S.Redis
+	b := make([]dto.PTermCalcedCoordDTO, 0)
+	r.HGetAll(S.S.Context, util.GenCalcedPTermCoordKey()).Val()
+	for _, v := range r.HGetAll(S.S.Context, util.GenLinearCalcedPTermKey()).Val() {
+		temp := dto.PTermCalcedCoordDTO{}
+		json.Unmarshal([]byte(v), &temp)
+		b = append(b, temp)
+	}
+	com.OkD(c, b)
+
+}

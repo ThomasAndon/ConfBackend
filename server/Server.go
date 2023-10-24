@@ -88,6 +88,7 @@ func StartApi() {
 		cc.GET("/mem_location", view.MemLocation)
 		cc.GET("/node_stats", view.NodeSensorStats)
 		cc.GET("/node_coords", view.NodeCoords)
+		cc.GET("/mem_location_linear", view.MemLocationLinear)
 	}
 
 	{

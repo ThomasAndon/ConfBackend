@@ -53,6 +53,10 @@ var (
 	PtermCalcedCoordPrefix = "pterm-calced-coord_"
 )
 
+var (
+	LinearCalcedPTermPrefix = "linear-calced-pterm_"
+)
+
 // /// node sensor stats
 var (
 	SensorPrefix          = "sensor_"
