@@ -210,3 +210,16 @@ func NodeCoords(ctx *gin.Context) {
 	}
 	com.OkD(ctx, ret)
 }
+
+func GetVibs(ctx *gin.Context) {
+	m := S.S.Mysql
+	res := make([]model.VibrationInfo, 0)
+	// first group by created_at, then find all the records with this created_at
+	m.Raw("select * from t_vibration_info " +
+		"where created_at " +
+		"in (select created_at " +
+		"from t_vibration_info " +
+		"group by created_at) " +
+		"order by created_at desc").Scan(&res)
+	com.OkD(ctx, res)
+}
