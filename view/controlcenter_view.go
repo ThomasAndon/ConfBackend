@@ -233,6 +233,7 @@ func GetVibs(ctx *gin.Context) {
 		"in (select created_at " +
 		"from t_vibration_info " +
 		"group by created_at) " +
-		"order by created_at desc").Scan(&res)
+		"order by created_at desc " +
+		"Limit 1").Scan(&res)
 	com.OkD(ctx, res)
 }
