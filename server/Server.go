@@ -57,6 +57,8 @@ func StartApi() {
 		node := s.Group("/node")
 		node.POST("/update_location", view.UpdateLocation)
 		node.POST("/sensors", view.SensorStats)
+		node.POST("/term_data", view.TermData)
+
 		node.POST("/echo", func(context *gin.Context) {
 			// echo whatever is in the request body
 			content, _ := io.ReadAll(context.Request.Body)
@@ -122,6 +124,11 @@ func StartApi() {
 		test.GET("/version", func(c *gin.Context) {
 			c.String(200, "0712:1210")
 		})
+		test.GET("setbyte", view.SetByte)
+		test.GET("getbyte", view.GetByte)
+		test.GET("set1", view.Set1)
+		test.GET("set2", view.Set2)
+		test.GET("set3", view.Set3)
 
 	}
 

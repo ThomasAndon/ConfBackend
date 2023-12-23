@@ -3,9 +3,11 @@ package view
 import (
 	com "ConfBackend/common"
 	"ConfBackend/model"
+	"ConfBackend/network"
 	S "ConfBackend/services"
 	"ConfBackend/task"
 	"ConfBackend/util"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"os"
 )
@@ -69,4 +71,128 @@ func ConfView(c *gin.Context) {
 		Conf: S.S.Conf,
 		Env:  string(con),
 	})
+}
+
+func SetByte(c *gin.Context) {
+	b1 := []byte{0, 5}
+	b2 := []byte{0, 1}
+	b3 := []byte{0, 2}
+	b4 := byte('a')
+	b5 := byte(1)
+	b6 := []byte{1, 2, 3, 4}
+	b7 := []byte{'a', 'f', 'e'}
+	b8 := []byte{0, 0, 0, 0, 0}
+	// b9 contains 260 bytes
+	b9 := []byte{1, 3, 5, 7, 9}
+	//for i := 0; i < 260; i++ {
+	//	b9 = append(b9, 1)
+	//}
+
+	// concat them all
+	b := append(b1, b2...)
+	b = append(b, b3...)
+	b = append(b, b4)
+	b = append(b, b5)
+	b = append(b, b6...)
+	b = append(b, b7...)
+	b = append(b, b8...)
+	b = append(b, b9...)
+
+	network.HandleSinglePacket(b)
+	// 可以成功设置字节流
+}
+
+func GetByte(c *gin.Context) {
+	r := S.S.Redis
+	bytes, _ := r.Get(c, "tr_:net_:1:97102101:1").Bytes()
+	fmt.Println(bytes)
+	// 可以成功获取字节流
+
+}
+
+func Set1(c *gin.Context) {
+	b1 := []byte{0, 5}
+	b2 := []byte{0, 1}
+	b3 := []byte{0, 3}
+	b4 := byte('a')
+	b5 := byte(1)
+	b6 := []byte{1, 2, 3, 4}
+	b7 := []byte{'a', 'f', 'e'}
+	b8 := []byte{0, 0, 0, 0, 0}
+	// b9 contains 260 bytes
+	b9 := []byte{1, 3, 5, 7, 9}
+	//for i := 0; i < 260; i++ {
+	//	b9 = append(b9, 1)
+	//}
+
+	// concat them all
+	b := append(b1, b2...)
+	b = append(b, b3...)
+	b = append(b, b4)
+	b = append(b, b5)
+	b = append(b, b6...)
+	b = append(b, b7...)
+	b = append(b, b8...)
+	b = append(b, b9...)
+
+	network.HandleSinglePacket(b)
+	// 可以成功设置字节流
+}
+
+func Set2(c *gin.Context) {
+	b1 := []byte{0, 5}
+	b2 := []byte{0, 3}
+	b3 := []byte{0, 3}
+	b4 := byte('a')
+	b5 := byte(1)
+	b6 := []byte{1, 2, 3, 4}
+	b7 := []byte{'a', 'f', 'e'}
+	b8 := []byte{0, 0, 0, 0, 0}
+	// b9 contains 260 bytes
+	b9 := []byte{2, 4, 6, 8, 10}
+	//for i := 0; i < 260; i++ {
+	//	b9 = append(b9, 1)
+	//}
+
+	// concat them all
+	b := append(b1, b2...)
+	b = append(b, b3...)
+	b = append(b, b4)
+	b = append(b, b5)
+	b = append(b, b6...)
+	b = append(b, b7...)
+	b = append(b, b8...)
+	b = append(b, b9...)
+
+	network.HandleSinglePacket(b)
+	// 可以成功设置字节流
+}
+
+func Set3(c *gin.Context) {
+	b1 := []byte{0, 5}
+	b2 := []byte{0, 2}
+	b3 := []byte{0, 3}
+	b4 := byte('a')
+	b5 := byte(1)
+	b6 := []byte{1, 2, 3, 4}
+	b7 := []byte{'a', 'f', 'e'}
+	b8 := []byte{0, 0, 0, 0, 0}
+	// b9 contains 260 bytes
+	b9 := []byte{111, 112, 113, 114, 115}
+	//for i := 0; i < 260; i++ {
+	//	b9 = append(b9, 1)
+	//}
+
+	// concat them all
+	b := append(b1, b2...)
+	b = append(b, b3...)
+	b = append(b, b4)
+	b = append(b, b5)
+	b = append(b, b6...)
+	b = append(b, b7...)
+	b = append(b, b8...)
+	b = append(b, b9...)
+
+	network.HandleSinglePacket(b)
+	// 可以成功设置字节流
 }

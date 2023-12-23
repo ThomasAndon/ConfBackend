@@ -111,3 +111,8 @@ func GetAllContacts(c *gin.Context) {
 	S.S.Mysql.Select("uuid", "nickname").Where("deleted_at is null AND uuid != ?", incomeUuid).Order("id").Find(&usrs)
 	com.OkD(c, usrs)
 }
+
+func TermData(*gin.Context) {
+	//r := S.S.Redis
+
+}

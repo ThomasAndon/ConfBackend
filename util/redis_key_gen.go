@@ -1,6 +1,9 @@
 package util
 
-import com "ConfBackend/common"
+import (
+	com "ConfBackend/common"
+	"strconv"
+)
 
 func GenDistanceCacheKey(packetId, nodeId string) string {
 	return com.ProjectPref + ":" + com.DistanceCachePrefix + ":" + com.PacketsPrefix + ":" + com.PacketPrefix + packetId + ":" + com.NodePrefix + nodeId
@@ -60,4 +63,21 @@ func GenLinearCalcedPTermKey() string {
 // 是一个hash，key是nodeid，value是一个json，是SensorStatsDTO结构体 json
 func GenNodeStatsKey() string {
 	return com.ProjectPref + ":" + com.SensorPrefix + ":" + com.NodeSensorStatsPrefix
+}
+
+///// Net pack prefix gen
+
+func GenNetworkPktKey(termId int, nonce [3]byte, packetSerialNum int) string {
+	nonceStr := GenNonceStr(nonce)
+	return com.ProjectPref + ":" + com.NetPktPrefix + ":" + strconv.Itoa(termId) + ":" + nonceStr + ":" + strconv.Itoa(packetSerialNum)
+}
+
+func GenNetworkPktQueryKey(termId int, nonce [3]byte) string {
+	nonceStr := GenNonceStr(nonce)
+	return com.ProjectPref + ":" + com.NetPktPrefix + ":" + strconv.Itoa(termId) + ":" + nonceStr + ":*"
+}
+
+func GenNonceStr(nonce [3]byte) string {
+	nonceStr := strconv.Itoa(int(nonce[0])) + strconv.Itoa(int(nonce[1])) + strconv.Itoa(int(nonce[2]))
+	return nonceStr
 }
