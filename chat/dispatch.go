@@ -24,6 +24,9 @@ func SendOnlineMsg(msg model.ImMessage) error {
 // DispatchToSingleOnlineUser Dispatch 尝试将消息下发至一个用户，用户不在线则返回error，同时返回
 // 所生成的msg对象
 func DispatchToSingleOnlineUser(msg model.ImMessage) error {
+	// todo 调用UWB发送
+
+	// 下面的原有的WS发送逻辑不用管了
 	util.PadSingleChatMsgFileUrl(&msg)
 	err := SendOnlineMsg(msg)
 	if err != nil {

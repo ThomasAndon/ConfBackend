@@ -103,3 +103,10 @@ func TestGenerateMessageChunks(t *testing.T) {
 func TestUint16ToTwoBytes(t *testing.T) {
 	fmt.Println(util.Uint16ToTwoBytes(480))
 }
+
+func TestUtf8(t *testing.T) {
+	str := "你好"
+	var b []byte
+	b = append(b, str...)
+	fmt.Println(b)
+}

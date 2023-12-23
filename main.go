@@ -2,6 +2,7 @@ package main
 
 import (
 	"ConfBackend/chat"
+	"ConfBackend/network"
 	"ConfBackend/server"
 	S "ConfBackend/services"
 	"github.com/gin-gonic/gin"
@@ -17,6 +18,9 @@ func init() {
 func main() {
 	// 单独的协程监听车的socket端口
 	go server.StartListenHeroPort()
+
+	// 单独的携程监听UWB的tcp发包端口
+	go network.StartListenNetPktPort()
 
 	// 启动聊天部分功能
 	log.Println("init chat services")

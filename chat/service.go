@@ -2,7 +2,6 @@ package chat
 
 import (
 	"ConfBackend/chat/archive"
-	"ConfBackend/chat/unread"
 	"ConfBackend/model"
 	S "ConfBackend/services"
 	"ConfBackend/task"
@@ -38,7 +37,8 @@ func IncomingHTTPTextMsg(fromUUID string, msgText string, isToGroup bool, toEnti
 			err := DispatchToSingleOnlineUser(msg)
 			if err != nil {
 				//todo 不在线，存入未读消息
-				go unread.SaveSingleUnreadMsg(msg)
+				// 先不存redis了，不在线则不管了
+				//go unread.SaveSingleUnreadMsg(msg)
 			}
 		} else {
 			// 群发
@@ -76,7 +76,8 @@ func IncomingHTTPFileMsg(fromUUID string, msgType string, isToGroup bool, toEnti
 			err := DispatchToSingleOnlineUser(msg)
 			if err != nil {
 				//todo 不在线，存入未读消息
-				go unread.SaveSingleUnreadMsg(msg)
+				// 先不存redis了，不在线则不管了
+				//go unread.SaveSingleUnreadMsg(msg)
 			}
 		} else {
 			// 群发
