@@ -227,13 +227,33 @@ func MemLocationLinear(c *gin.Context) {
 func GetVibs(ctx *gin.Context) {
 	m := S.S.Mysql
 	res := make([]model.VibrationInfo, 0)
+	/*	record := ctx.Query("time_in_min")
+		var timeMinute int
+		if record != "" {
+			// record must be an int
+			var err error
+			timeMinute, err = strconv.Atoi(record)
+			if err != nil {
+				com.Error(ctx, "record 参数必须是整数")
+				return
+			}
+			goto withRecord
+		}*/
+
 	// first group by created_at, then find all the records with this created_at
 	m.Raw("select * from t_vibration_info " +
-		"where created_at " +
-		"in (select created_at " +
+		"where detected_time " +
+		"= (select detected_time " +
 		"from t_vibration_info " +
-		"group by created_at) " +
-		"order by created_at desc " +
-		"Limit 1").Scan(&res)
+		"group by detected_time " +
+		"order by detected_time " +
+		"desc limit 1) ").Scan(&res)
+
+	/*withRecord:
+	  // time of timeMinute minutes ago
+	  timeMinuteAgo := time.Now().Add(-time.Minute * time.Duration(timeMinute))*/
+
+	//m.Raw("select * from t_vibration_info " +
+	//	"where detected_time >=").Scan(&res)
 	com.OkD(ctx, res)
 }

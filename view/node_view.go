@@ -4,6 +4,7 @@ import (
 	com "ConfBackend/common"
 	"ConfBackend/dto"
 	"ConfBackend/model"
+	"ConfBackend/network"
 	S "ConfBackend/services"
 	_ "ConfBackend/services"
 	"ConfBackend/task"
@@ -112,7 +113,15 @@ func GetAllContacts(c *gin.Context) {
 	com.OkD(c, usrs)
 }
 
-func TermData(*gin.Context) {
+func TermData(c *gin.Context) {
 	//r := S.S.Redis
+	// get raw body bytes
+	rawBytes, err := c.GetRawData()
+	if err != nil {
+		S.S.Logger.WithFields(logrus.Fields{
+			"错误内容": err,
+		}).Errorf("从/term_data 接口获取term_data失败")
+	}
+	network.HandleSinglePacket(rawBytes)
 
 }

@@ -70,11 +70,13 @@ func ParseMsgBody(data []byte) (*MsgBody, error) {
 }
 
 func HandleSinglePacket(input []byte) {
+	S.S.Logger.Infof("接收到一个请求上传，字节流长度为%d", len(input))
 	b, _ := ParseMsgBody(input)
 	r := S.S.Redis
 
 	if b.TotalPackets == 1 {
 		// todo handle single packet
+		handleFullData(&b.Payload, b)
 	} else {
 		// todo handle more than one
 		/*		if b.PacketSerialNum < b.TotalPackets {
@@ -99,26 +101,30 @@ func HandleSinglePacket(input []byte) {
 			mapp := getSavedByteDict(keys)
 			// concat them
 			fullData := concatAll(mapp, b)
-			fmt.Println("full: ", fullData)
-			if b.MessageType == 'a' {
-				S.S.Logger.Infof("开始处理%d号终端发来的文字消息，byte数%d", b.TerminalID, len(*fullData))
-				chat.IncomingHTTPTextMsg(strconv.Itoa(int(b.TerminalID)), string(*fullData), false, "0")
-			}
-			if b.MessageType == 'b' {
-				// todo handle voice
-				S.S.Logger.Infof("开始处理%d号终端发来的语音消息", b.TerminalID)
-				fileType := ".aac"
-				newFileName := uuid.New().String() + fileType
-				newFileDir := filepath.Join(S.S.Conf.Chat.SaveStaticFileDirPrefix, newFileName)
-				saveByteFile(*fullData, newFileDir)
-				chat.IncomingHTTPFileMsg(strconv.Itoa(int(b.TerminalID)), "audio", false, "0", newFileName, newFileDir)
-
-			}
+			handleFullData(fullData, b)
 
 		}
 
 	}
 
+}
+
+func handleFullData(fullData *[]byte, b *MsgBody) {
+
+	if b.MessageType == 'a' {
+		S.S.Logger.Infof("开始处理%d号终端发来的文字消息，byte数%d", b.TerminalID, len(*fullData))
+		chat.IncomingHTTPTextMsg(strconv.Itoa(int(b.TerminalID)), string(*fullData), false, "0")
+	}
+	if b.MessageType == 'b' {
+		// todo handle voice
+		S.S.Logger.Infof("开始处理%d号终端发来的语音消息", b.TerminalID)
+		fileType := ".aac"
+		newFileName := uuid.New().String() + fileType
+		newFileDir := filepath.Join(S.S.Conf.Chat.SaveStaticFileDirPrefix, newFileName)
+		saveByteFile(*fullData, newFileDir)
+		chat.IncomingHTTPFileMsg(strconv.Itoa(int(b.TerminalID)), "audio", false, "0", newFileName, newFileDir)
+
+	}
 }
 
 func saveByteFile(data []byte, path string) {
